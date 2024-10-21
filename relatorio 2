@@ -1,0 +1,17 @@
+SELECT 
+    e.nome AS "Nome Empregado",
+    e.cpf AS "CPF Empregado",
+    e.dataAdm AS "Data Admissão",
+    e.salario AS "Salário",
+    d.nome AS "Departamento",
+    t.numero AS "Número de Telefone"
+FROM 
+    Empregado e
+JOIN 
+    Departamento d ON e.Departamento_idDepartamento = d.idDepartamento
+JOIN 
+    Telefone t ON e.cpf = t.Empregado_cpf
+WHERE 
+    e.salario < (SELECT AVG(salario) FROM Empregado)
+ORDER BY 
+    e.nome ASC;
