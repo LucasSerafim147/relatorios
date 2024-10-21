@@ -1,0 +1,14 @@
+SELECT 
+    p.nome AS `Nome Produto`,
+    SUM(iv.quantidade) AS `Quantidade (Total) Vendas`,
+    SUM(iv.quantidade * iv.valor) AS `Valor Total Recebido pela Venda do Produto`
+FROM 
+    petshop.Produtos p
+JOIN 
+    petshop.ItensVendaProd iv ON p.idProduto = iv.Produto_idProduto
+JOIN 
+    petshop.Venda v ON iv.Venda_idVenda = v.idVenda
+GROUP BY 
+    p.idProduto, p.nome
+ORDER BY 
+    `Quantidade (Total) Vendas` DESC;
