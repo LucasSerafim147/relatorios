@@ -1,0 +1,16 @@
+SELECT 
+    e.nome AS "Nome Empregado",
+    e.cpf AS "CPF Empregado",
+    e.sexo AS "Sexo",
+    e.salario AS "Salário",
+    COUNT(v.idVenda) AS "Quantidade Vendas",
+    SUM(v.valor) AS "Total Valor Vendido",
+    SUM(v.comissao) AS "Total Comissão das Vendas"
+FROM 
+    Empregado e
+LEFT JOIN 
+    Venda v ON e.cpf = v.Empregado_cpf
+GROUP BY 
+    e.nome, e.cpf, e.sexo, e.salario
+ORDER BY 
+    COUNT(v.idVenda) DESC;
