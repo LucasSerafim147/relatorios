@@ -1,0 +1,13 @@
+SELECT 
+    s.nome AS "Nome do Serviço",
+    SUM(isv.quantidade) AS "Quantidade Vendas",
+    SUM(isv.valor) AS "Total Valor Vendido"
+FROM 
+    itensServico isv
+JOIN 
+    Servico s ON isv.Servico_idServico = s.idServico
+GROUP BY 
+    s.nome
+ORDER BY 
+    SUM(isv.quantidade) DESC
+LIMIT 10;
