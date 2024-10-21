@@ -1,0 +1,13 @@
+SELECT 
+    p.nome AS Nome_Produto,
+    p.valor AS Valor_Produto,
+    p.categoria AS Categoria_Produto,
+    f.nome AS Nome_Fornecedor,
+    f.email AS Email_Fornecedor,
+    f.telefone AS Telefone_Fornecedor
+FROM 
+    produto p
+JOIN 
+    fornecedor f ON p.Fornecedor_id = f.idFornecedor
+ORDER BY 
+    p.nome ASC;
