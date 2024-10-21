@@ -1,0 +1,14 @@
+SELECT 
+    v.data AS Data_Venda,
+    v.valor AS Valor,
+    v.desconto AS Desconto,
+    (v.valor - IFNULL(v.desconto, 0)) AS Valor_Final,
+    e.nome AS Empregado_Realizou_Venda
+FROM 
+    Venda v
+JOIN 
+    Empregado e ON v.Empregado_cpf = e.cpf
+WHERE 
+    v.Cliente_cpf = "005.710.583-96"
+ORDER BY 
+    v.data DESC;
