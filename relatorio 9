@@ -1,0 +1,12 @@
+SELECT 
+    f.tipo AS "Tipo Forma Pagamento",
+    COUNT(v.idVenda) AS "Quantidade Vendas",
+    SUM(f.valorPago) AS "Total Valor Vendido"
+FROM 
+    FormaPgVenda f
+JOIN 
+    Venda v ON f.Venda_idVenda = v.idVenda
+GROUP BY 
+    f.tipo
+ORDER BY 
+    COUNT(v.idVenda) DESC;
