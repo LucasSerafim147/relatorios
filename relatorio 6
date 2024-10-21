@@ -1,0 +1,19 @@
+SELECT 
+    p.nome AS "Nome do Pet",
+    v.data AS "Data do Serviço",
+    s.nome AS "Nome do Serviço",
+    isv.quantidade AS "Quantidade",
+    isv.valor AS "Valor",
+    e.nome AS "Empregado que realizou o Serviço"
+FROM 
+    PET p
+JOIN 
+    itensServico isv ON p.idPET = isv.PET_idPET
+JOIN 
+    Venda v ON isv.Venda_idVenda = v.idVenda
+JOIN 
+    Servico s ON isv.Servico_idServico = s.idServico
+JOIN 
+    Empregado e ON isv.Empregado_cpf = e.cpf
+ORDER BY 
+    v.data DESC;
