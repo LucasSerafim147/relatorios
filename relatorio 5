@@ -1,0 +1,18 @@
+SELECT 
+    e.nome AS "Nome Empregado",
+    e.cpf AS "CPF Empregado",
+    e.sexo AS "Sexo",
+    e.salario AS "Salário",
+    COUNT(DISTINCT isv.Venda_idVenda) AS "Quantidade Vendas com Serviço",
+    SUM(isv.valor) AS "Total Valor Vendido com Serviço",
+    SUM(isv.desconto) AS "Total Comissão das Vendas com Serviço"
+FROM 
+    Empregado e
+JOIN 
+    itensServico isv ON e.cpf = isv.Empregado_cpf
+JOIN 
+    Venda v ON isv.Venda_idVenda = v.idVenda
+GROUP BY 
+    e.nome, e.cpf, e.sexo, e.salario
+ORDER BY 
+    COUNT(DISTINCT isv.Venda_idVenda) DESC;
